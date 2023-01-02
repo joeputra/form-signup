@@ -43,19 +43,7 @@ class _SignUpViewState extends State<SignUpView> {
         body: LayoutBuilder(
           builder: (context, constraints) {
             if (constraints.maxWidth > 600) {
-              return Row(
-                children: [
-                  Expanded(
-                      flex: 4,
-                      child: Container(
-                        color: Colors.red,
-                      )),
-                  Expanded(
-                      child: Container(
-                    color: Colors.yellow,
-                  ))
-                ],
-              );
+              return _buildLargeScreen(size);
             } else {
               return _buildSmallScreen(size);
             }
@@ -65,19 +53,47 @@ class _SignUpViewState extends State<SignUpView> {
     );
   }
 
+  Row _buildLargeScreen(Size size) {
+    return Row(
+      children: [
+        Expanded(
+          flex: 4,
+          child: Lottie.asset(
+            'assets/cube.json',
+            width: double.infinity,
+            height: size.height * 0.3,
+            fit: BoxFit.fill,
+            animate: true,
+          ),
+        ),
+        SizedBox(
+          width: size.width * 0.06,
+        ),
+        Expanded(
+          flex: 5,
+          child: _buildMainBody(size),
+        )
+      ],
+    );
+  }
+
   Center _buildSmallScreen(Size size) => Center(child: _buildMainBody(size));
 
   Column _buildMainBody(Size size) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment:
+          size.width > 600 ? MainAxisAlignment.center : MainAxisAlignment.start,
       children: [
-        Lottie.asset(
-          'assets/wave-line.json',
-          width: size.width,
-          height: size.height * 0.2,
-          animate: true,
-        ),
+        size.width > 600
+            ? Container()
+            : Lottie.asset(
+                'assets/wave-line.json',
+                width: double.infinity,
+                height: size.height * 0.2,
+                fit: BoxFit.fill,
+                animate: true,
+              ),
         SizedBox(height: size.height * 0.03),
         Padding(
           padding: const EdgeInsets.only(left: 20.0),

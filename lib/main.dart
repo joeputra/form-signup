@@ -9,5 +9,5 @@ import 'views/login_View.dart';
 // ignore: unnecessary_new
 void main() => runApp(new GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginView(),
+      home: SignUpView(),
     ));
