@@ -97,9 +97,11 @@ class _SignUpViewState extends State<SignUpView> {
         SizedBox(height: size.height * 0.03),
         Padding(
           padding: const EdgeInsets.only(left: 20.0),
-          child: Text(
-            "Sign-Up",
-            style: loginTitleStyle(size),
+          child: Center(
+            child: Text(
+              "Sign-Up",
+              style: loginTitleStyle(size),
+            ),
           ),
         ),
         SizedBox(height: size.height * 0.01),
